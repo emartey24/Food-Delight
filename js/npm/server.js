@@ -45,6 +45,7 @@ const db = pgp("postgres://rrermifn:mJO35jyo0b1v2FSRMCRgXeoc-qFcC8YF@ziggy.db.el
 let clientID = 0;
 
 app.all('/*', (req, res, next) => {
+  clientID++;
   logger.log({
     level: 'info',
     endpoint: req.path,
