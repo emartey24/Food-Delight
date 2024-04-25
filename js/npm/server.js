@@ -64,8 +64,75 @@ app.all('/*', (req, res, next) => {
 Endpoint:
     GET
 */
-app.get('/food', async (req, res) => {
+/*
+Endpoint:
+    User can get a list of the menu items or use the specific query parameters to get certain food items
+Query Parameters:
+  all[string](required): will return a list of all menu items
+  name[string]: will return the food based on the name that was typed in, correct spelling and spaces are necessary 
+  type[string]: will return the foods that are under the specific type that was typed in, correct spelling are necessary
+*/
+
+app.get('/menu', async (req, res) => {
+  if(Object.keys(req.body).length != 0) {
+    clientError(req, "Request body is not permitted at this endpoint", 400);
+    res.status(400).json({error: "Request body is not permitted at this endpoint"});
+  } 
+  // Makes sure that client only 4 query param (name, type, region, abilities)
+  else if(Object.keys(req.query).length > 1) {
+      clientError(req, "Query parameters do not meet the requirements", 400);
+      res.status(400).json({error: "Query parameters do not meet the requirements length"});
+  } 
+  // Makes sure that client put in an ID that is a number
+  else if(isNaN(req.query.id) && req.query.id != undefined) {
+      clientError(req, "ID is not a number", 400);
+      res.status(400).json({error: "ID is not a number"});
+  }
+  else {
+      if(req.query.all === '') {
+        res.json(await db.any('SELECT * FROM food'));
+      }
+      else if(req.query.id != undefined) {
+        let checkNullID = await db.oneOrNone('SELECT * FROM food WHERE id = $1', [req.query.id]);
+        if(checkNullID === null) {
+          clientError(req, "That ID does not exist", 400);
+          res.status(400).json({error: "That ID does not exist"});
+        } 
+        else {
+          res.json(await db.oneOrNone('SELECT * FROM food WHERE id = $1', [req.query.id]));
+        }
+      }
+      else if(req.query.name != undefined) {
+        let checkNullName = await db.oneOrNone('SELECT * FROM food WHERE name = $1', [req.query.name]);
+        if(checkNullName === null) {
+          clientError(req, "There are no food items with that name", 400);
+          res.status(400).json({error: "There are no food items with that name"});
+        } 
+        else {
+          res.json(await db.oneOrNone('SELECT * FROM food WHERE name = $1', [req.query.name]));
+        }
+      }
+      else if(req.query.type != undefined) {
+        // console.log(req.query.type);
+        let checkNullType = await db.manyOrNone('SELECT * FROM food WHERE type = $1', [req.query.type]);
+        // console.log(checkNullType);
+        if(checkNullType === null || checkNullType == 0) {
+          clientError(req, "We do not have that category of foods yet", 400);
+          res.status(400).json({error: "We do not have that category of foods yet"});
+        } 
+        else {
+          res.json(await db.manyOrNone('SELECT * FROM food WHERE type = $1', [req.query.type]));
+        }
+      }  
+    }
 });
+
+
+
+
+
+
+
 
 /*
 Endpoint:
