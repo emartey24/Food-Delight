@@ -1,0 +1,70 @@
+/* body styling */
+* {box-sizing: border-box}
+body{
+    background-image: url('https://www.thespruceeats.com/thmb/KauHqB-Lk5nnMSWjTh6G3bWcGz4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Stocksy_txpcfead064n6o200_Medium_1129483-7cb1e14712a04ac18cbeddcc57b049e1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* form styling */
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Add padding to containers */
+.container { 
+    border-radius: 15px;
+    background-color: red;
+    width: 25%;
+    padding: 15px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "Login" section */
+.login {
+  background-color: #f1f1f1;
+  text-align: center;
+}
