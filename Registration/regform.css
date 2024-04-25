@@ -11,14 +11,18 @@ form{
     flex-direction: column;
     align-items: center;
 }
+#regtx{
 
+  color: goldenrod;
+}
 
 /* Add padding to containers */
 .container { 
     border-radius: 15px;
-    background-color: red;
+    background-color:  #004AAD ;
     width: 25%;
     padding: 15px;
+    color: white;
 }
 
 /* Full-width input fields */
@@ -44,7 +48,7 @@ hr {
 
 /* Set a style for the submit/register button */
 .registerbtn {
-  background-color: #04AA6D;
+  background-color: goldenrod;
   color: white;
   padding: 16px 20px;
   margin: 8px 0;
@@ -60,7 +64,7 @@ hr {
 
 /* Add a blue text color to links */
 a {
-  color: dodgerblue;
+  color: goldenrod;
 }
 
 /* Set a grey background color and center the text of the "Login" section */
