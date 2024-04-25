@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/ForgotPass/forgotPass.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./forgotPass.css">
+    <script src="./forgotPassword.js"></script>
+    <title>Forgot Password</title>
 </head>
 <body>
   <!-- Forgot password form -->
-    <form id="forgotPass" method="post">
+    <form action="http://localhost:3000/forgotpassword" method="get">
         <div class="imgcontainer">
             <H1>Reset your password</H1>
 
@@ -16,8 +17,8 @@
         </div>
       <!--Forgot password input label and send resest link button -->
         <div class="container">
-          <label for="uname"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" id="email" required>
+          <label for="Email"><b>Email</b></label>
+                <input type="email" name="email" value="example@email.com" class="form-control" id="email" minlength="10" maxlength="50" required>
       <!--Send Reset link button  -->
           <button type="submit">Send Reset Link</button>
         </div>
@@ -26,7 +27,5 @@
           <button type="button" class="cancelbtn">Cancel</button>
         </div>
       </form>
-
-<!-- <script src="/ForgotPass/forgotPass.js"></script>     -->
 </body>
 </html>        

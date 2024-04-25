@@ -4,25 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="logform.css">
-    <title>Document</title>
+    <script src="./loginPage.js"></script>
+    <title>Login Page</title>
 </head>
 <body>
   <!-- Login form -->
-    <form id="logForm" method="post">
+    <form action="http://localhost:3000/login" method="get">
 
          <!--Logo container if used must uncomment the img tag to use -->
-        <div class="imgcontainer">
-          <img src="./food delight logo.png" alt="" class="logo">   
+        <div class="imgcontainer">POSSIBLE LOGO HERE
+          <!-- <img src="" alt="" class="logo"> -->   
         </div>
       <!--Container for passord input,email input,remember me input, and Login button   -->
         <div class="container">
-          <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
-      
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-      
-          <button type="submit">Login</button>
+          <p>
+            <label for="Username"><b>Username</b></label>
+            <input type="text" name="userName" value="testlogin" class="form-control" id="username" required>
+          </p>
+          <p>
+            <label for="Password"><b>Password</b></label>
+            <input type="password" name="password" value="password123" class="form-control" id="password" required>
+          </p>
+          <div>
+            <button type="submit">Log In</button>
+          </div>
+
           <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
           </label>
@@ -30,7 +36,7 @@
       <!--Container for Cancel button and Forgot password link -->
         <div class="container" style="background-color:#f1f1f1">
           <button type="button" class="cancelbtn">Cancel</button>
-          <span class="psw">Forgot <a href="../ForgotPass/forgotPass.html">password?</a></span>
+          <span class="psw"> <a href="../ForgotPass/forgotPass.html">Forgot password?</a></span>
         </div>
       </form>
 <!-- <script src="/Login/logForm.js"></script>     -->
