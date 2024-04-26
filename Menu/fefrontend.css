@@ -56,3 +56,14 @@
     height: 20%;
 }
 
+.orderlogo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20% ;
+  height: 20%;
+}
+
+.form {
+  text-align: center;
+}

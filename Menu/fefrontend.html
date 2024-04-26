@@ -15,10 +15,57 @@
     <div id="food">
       <div id="characterContainer" class="characterContainer"></div>
     </div>
-   
-
-
-  
-
-  
-
+    <div id="orderUp">
+      <img src="../fdlogo/order page logo (2).png" alt="" class="orderlogo" />
+    </div>
+    <form class="form" action="http://localhost:3000/order" method="post">
+          <div>
+              <label for="username"><b>Username</b></label>
+              <input type="text" name="userName" value="" class="form-control" id="username" minlength="8" maxlength="30" required>
+          </div>
+          <div>
+              <label for="menuitem"><b>Menu Item</b></label>
+              <select name="menuitem" id="menuitem">
+                  <option value="">Select your food</option>
+                  <option value="Firecracker Shrimp">Firecracker Shrimp</option>
+                  <option value="Smoked Salmon Bites">Smoked Salmon Bites</option>
+                  <option value="Shrimp Dip">Shrimp Dip</option>
+                  <option value="Crawfish Beignets">Crawfish Beignets</option>
+                  <option value="Shrimp Cocktail">Shrimp Cocktail</option>
+                  <option value="Hot Seafood Spread">Hot Seafood Spread</option>
+                  <option value="Oysters Rockefeller">Oysters Rockefeller</option>
+                  <option value="Crab Crescent">Crab Crescent</option>
+                  <option value="Tzatziki Shrimp Cucumber Rounds">Tzatziki Shrimp Cucumber Rounds</option>
+                  <option value="Baked Oysters">Baked Oysters</option>
+                  <option value="Couscous and Shrimp">Couscous and Shrimp</option>
+                  <option value="Fried Catfish">Fried Catfish</option>
+                  <option value="Almond Crusted Tilapia">Almond Crusted Tilapia</option>
+                  <option value="Shrimp Scampi">Shrimp Scampi</option>
+                  <option value="Teriyaki Salmon">Teriyaki Salmon</option>
+                  <option value="Shrimp and Peas Pasta">Firecracker Shrimp</option>
+                  <option value="Scallops Herb Rice">Scallops Herb Rice</option>
+                  <option value="Glazed Salmon">Glazed Salmon</option>
+                  <option value="Shrimp Noodle Bowls">Shrimp Noodle Bowls</option>
+                  <option value="Shrimp Taco">Shrimp Taco</option>
+                  <option value="Roasted Parmesan Green Beans">Roasted Parmesan Green Beans</option>
+                  <option value="Mediterranean Grilled Vegetables">Mediterranean Grilled Vegetables</option>
+                  <option value="Roasted Golden Beets">Roasted Golden Beets</option>
+                  <option value="Togarashi Fries">Togarashi Fries</option>
+                  <option value="Roasted Honeynut Squash">Roasted Honeynut Squash</option>
+                  <option value="Smashed Brussels Sprouts">Smashed Brussels Sprouts</option>
+                  <option value="Roasted Purple Potatoes">Roasted Purple Potatoes</option>
+                  <option value="Pesto Pasta Salad">Pesto Pasta Salad</option>
+                  <option value="Black Bean Salad">Black Bean Salad</option>
+                  <option value="Grilled Corn">Grilled Corn</option>
+                  <option value="Snickers Pie">Snickers Pie</option>
+                  <option value="Chocolate Mousse">Chocolate Mousse</option>
+                  <option value="Donut Ice Cream Sandwich">Donut Ice Cream Sandwich</option>
+                  <option value="Pound Cake">Pound Cake</option>
+                  <option value="Banana Pudding">Banana Pudding</option>
+              </select>
+          </div>
+          
+        <button onclick="popup()" type="submit">Submit</button>
+  </form>
+  </body>
+</html>
