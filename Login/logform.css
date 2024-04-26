@@ -68,6 +68,11 @@ form {
   /* The "Forgot password" text */
   span.psw {
     float: right;
-    padding-top: 16px;
+    /* padding-top: 16px; */
   }
+  /* Home link styling if needed */
+  /* a.home{
+    float:left;
+    padding-top: 16px;
+  } */
   
