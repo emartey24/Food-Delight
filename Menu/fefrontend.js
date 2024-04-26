@@ -38,3 +38,28 @@ fetch('http://localhost:3000/menu?all')
 
     }
 });
+
+// Pop up to show message after customer places an order
+function popup() {
+    alert("Order Placed!");
+}
+
+// Gathers the form data and converts the URL, which contains the customer request data, into strings
+// to use like a req.body on the server end
+
+// the body is x-www-form-urlencoded instead of a raw JSON body we are used to
+const form = document.querySelector('form')
+
+form.addEventListener('submit', () => {
+    const data = new FormData(form);
+    const url = new URLSearchParams(data).toString();
+
+    fetch('http://localhost:3000/order', {
+        method: "POST", 
+        body: url,
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        }
+    })
+})
+
