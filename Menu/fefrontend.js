@@ -18,13 +18,13 @@ fetch('http://localhost:3000/menu?all')
     let foodPriceTag = document.createElement("p");
 
     // Values
-    foodNameTag.innerText = "Name: " + data[i].name;
-    foodTypeTag.innerText = "Type: " + data[i].type;
-    foodDescriptionTag.innerText = "Description: " + data[i].description;
-    foodPriceTag.innerText = "Price: $" + data[i].price;
+    foodNameTag.innerText = "Name: " + data[i].food_name;
+    foodTypeTag.innerText = "Type: " + data[i].food_type;
+    foodDescriptionTag.innerText = "Description: " + data[i].food_description;
+    foodPriceTag.innerText = "Price: $" + data[i].food_price;
 
     // Link image to src
-    foodImage.src = data[i].img;
+    foodImage.src = data[i].food_img;
 
     // appendchild
     foodCard.appendChild(foodImage);

@@ -1,0 +1,38 @@
+.logo{
+    width: 10% ;
+    height: 10%;
+}
+
+.div-container-fluid{
+    height: 10% ;
+    width: -10%;
+}
+
+.navbar-collapse{
+    font-size: x-large;
+    
+}
+
+
+.foot{
+    display: flex;
+    justify-content: center;
+    color: blue;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: gold;
+ }
+
+ a.nav-link.active{
+    color: #004AAD !important;
+ }
+
+ a.nav-link{
+    color:  #004AAD  !important;
+ }
+
+
+
