@@ -1,143 +1,147 @@
 html {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+}
 
-  .fullBody{
-    background-color: white;
-    display: grid  !important;
-    background-color: white  !important;
-    text-align: center;
-    color:blue;
-  }
-
-
-  .header {
-    /* display: grid  !important; */
-    background-color: white !important;
-    text-align: center;
-    color: #ffffff;
-
-  }
-  
-
-  nav.navbar.bg-primary{
-    background-color:rgba(70, 167, 231, 0.614) !important;
-
-  }
- div.getting.started{
-  background-color:white;
+.fullBody{
+  background-color: white;
+  display: grid  !important;
+  background-color: white  !important;
+  text-align: center;
+  color:#004AAD ;
+}
 
 
- }
-  div.accordion-body{
-    background-color:  blue !important;
-  }
+.header {
+  /* display: grid  !important; */
+  background-color: white !important;
+  text-align: center;
+  color: #ffffff;
 
-  div.getresponse{
-    /* background-color: aliceblue !important; */
-  }
+}
 
+.navbar-brand{
+  color: #004AAD ;
+}
 
+nav.navbar.bg-primary{
+  background-color:rgba(70, 167, 231, 0.614) !important;
 
- 
-  .getrequest{
-    background-color: white !important;
-    text-align: left;
-    color: blue;
-
-
-  }
-  .getresponse{
-    background-color: white !important;
-    text-align: left;
-    color: blue;
-  }
-
-  
+}
+div.getting.started{
+background-color:white;
 
 
-  .postrequest{
-    background-color: white!important;
-    text-align: left;
-    color: blue;
+}
+div.accordion-body{
+  background-color:  blue !important;
+}
 
-  }
-  .postresponse{
-    background-color: white !important;
-    text-align: left;
-    color: blue;
-
-  }
-
-  .putrequest{
-    background-color: white!important;
-    text-align: left;
-    color: blue
-
-  }
-  .putresponse{
-    background-color: white !important;
-    text-align: left;
-    color: blue;
-
-  }
+div.getresponse{
+  /* background-color: aliceblue !important; */
+}
 
 
 
-  .deleterequest{
-    background-color: white!important;
-    text-align: left;
-    color: blue;
 
-  }
-  .deleteresponse{
-    background-color: white!important;
-    text-align: left;
-    color: blue;
+.getrequest{
+  background-color: white !important;
+  text-align: left;
+  color: #004AAD 
 
-  }
+
+}
+.getresponse{
+  background-color: white !important;
+  text-align: left;
+  color: #004AAD 
+}
+
+
+
+
+.postrequest{
+  background-color: white!important;
+  text-align: left;
+  color: #004AAD 
+
+}
+.postresponse{
+  background-color: white !important;
+  text-align: left;
+  color: #004AAD 
+
+}
+
+.putrequest{
+  background-color: white!important;
+  text-align: left;
+  color: #004AAD 
+
+}
+.putresponse{
+  background-color: white !important;
+  text-align: left;
+  color: #004AAD 
+
+}
+
+
+
+.deleterequest{
+  background-color: white!important;
+  text-align: left;
+  color: #004AAD 
+
+}
+.deleteresponse{
+  background-color: white!important;
+  text-align: left;
+  color: #004AAD 
+
+
+}
 
 
 
 .btn-outline-success{
-    color: black !important ;
-    font-size: x-large;
-  }
-
-  .btn-outline-warning{
-    color: goldenrod !important ;
-    font-size: x-large;
-  }
-
-
-
- .btn-outline-info{
-    color:black !important ;
-    font-size: x-large;
-  }
-
-.btn-outline-danger{
-  color: red !important ;
+  color: black !important ;
   font-size: x-large;
 }
 
+.btn-outline-warning{
+  color: goldenrod !important ;
+  font-size: x-large;
+}
+
+
+
+.btn-outline-info{
+  color:black !important ;
+  font-size: x-large;
+}
+
+.btn-outline-danger{
+color: red !important ;
+font-size: x-large;
+}
+
 .accordion-button.collapsed{
-    color:blue !important;
+  color:blue !important;
 
 }
 
 .accordion-body{
-    color: rgb(0, 242, 255) !important;
-    background-color: rgb(252, 250, 250) !important;
+  color: rgb(0, 242, 255) !important;
+  background-color: rgb(252, 250, 250) !important;
 }
 
 .logo{
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    position: absolute !important;
-    left: 660px;
-    top: 20px !important;
-    bottom: 1px !important;
-    text-align: center !important;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  position: absolute !important;
+  left: 660px;
+  top: 20px !important;
+  bottom: 1px !important;
+  text-align: center !important;
 }
