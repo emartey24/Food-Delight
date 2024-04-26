@@ -83,7 +83,7 @@ GET endpoints
 
 
 /*
-  GET endpoints for serving static HTML files (delivering HTML files)
+  GET endpoints for serving static HTML files (delivering HTML files) for redirecting different endpoints
 */
 
 app.get('/homepage', function(req, res) {
@@ -104,11 +104,11 @@ app.get('/forgotpassword', function(req, res) {
 
 /*
 Endpoint:
-    User can get a list of the menu items or use the specific query parameters to get certain food items
+    User can get information based on a single username
 Query Parameters:
-  all[string](required): will return a list of all menu items
-  name[string]: will return the food based on the name that was typed in, correct spelling and spaces are necessary 
-  type[string]: will return the foods that are under the specific type that was typed in, correct spelling are necessary
+  username[string](required): the username the customer is searching for
+  password[string](required): the password for the account
+  remember me[checkbox]: don't really have a purpose...yet, it was just in the html code
 */
 
 app.get('/login', async (req, res) => {
@@ -126,8 +126,7 @@ app.get('/login', async (req, res) => {
   else{
     if(req.query.userName != undefined){
       let usernameFound;
-      // console.log(req.body.username);
-      // console.log(formData[0].username);
+      // Checking if the username exists
       for(let i = 0; i < formData.length; i++) {
         if(formData[i].username == req.query.userName) {
           usernameFound = true;
@@ -137,9 +136,11 @@ app.get('/login', async (req, res) => {
           usernameFound = false;
         }
       }
+      // Redirect customer to the main restaurant page if account exists
       if(usernameFound === true) {
         return res.redirect("http://localhost:3000/homepage");
       }
+      // Redirect customer to the registration page if account does not exists
       else if(usernameFound === false) {
         return res.redirect("http://localhost:3000/registerpage");
       }
@@ -211,9 +212,16 @@ app.get('/menu', async (req, res) => {
     }
 });
 
+
+/* 
+-------------------------------------------------------------------------------------------------------------------
+POST endpoints
+-------------------------------------------------------------------------------------------------------------------
+*/
+
 /*
 Endpoint:
-  Adds the new user information to the logins database
+  Adds the new customer information to the logins database
 Body parameters:
   username(required): type username of choice as a string value on the html form
   password(required): type password of choice as a string value on the html form
@@ -223,12 +231,6 @@ Body parameters:
   city(required): type city of choice as a string value on the html form
   zipcode(required): type zipcode of choice as an integer value on the html form
   phone number(required): type phone number of choice as an integer value on the html form
-*/
-
-/* 
--------------------------------------------------------------------------------------------------------------------
-POST endpoints
--------------------------------------------------------------------------------------------------------------------
 */
 
 app.post('/register', async function(req, res) {
@@ -273,6 +275,47 @@ app.post('/register', async function(req, res) {
 
 });
 
+/*
+Endpoint:
+  Adds the new order to the customer_order database
+Body parameters:
+  username[string](required): type username of the customer ordering
+  menu item[dropdown menu](required): select one food item from the drop down menu 
+*/
+
+app.post('/order', async function(req, res) {
+  let formData = await db.manyOrNone('SELECT * FROM login');
+  if(Object.keys(req.query).length > 0) {
+    clientError(req, "Query not permitted at this endpoint", 400);
+    res.status(400).json({error: "Query not permitted at this endpoint"});
+  }
+  else if(req.body != undefined) {
+    let userExist;
+    for(let i = 0; i < formData.length; i++) {
+      if(formData[i].username == req.body.userName) {
+        userExist = true;
+        break;
+      }
+      else {
+        userExist = false;
+      }
+    }
+    if(userExist === true) {
+      await db.none('INSERT INTO testcustomerorder(username, food_name) VALUES($1, $2)', [req.body.userName, req.body.menuitem]);
+      await db.none('DROP TABLE complete_customer_order');
+      await db.none('CREATE TABLE complete_customer_order AS SELECT testcustomerorder.order_number, testcustomerorder.username, test_food.food_type, testcustomerorder.food_name, test_food.food_price FROM testcustomerorder INNER JOIN test_food ON testcustomerorder.food_name = test_food.food_name')
+      // If successfully ordered, will redirect to the main restaurant page
+      return res.redirect("http://localhost:3000/loginpage");
+    }
+    // If customer username does not exist, will redirect to the login page
+    else if(userExist === false) {
+      return res.redirect("https://personalwebsite-v2-green.vercel.app/");
+    }
+  }
+
+
+});
+
 /* 
 -------------------------------------------------------------------------------------------------------------------
 PATCH endpoints
@@ -281,43 +324,86 @@ PATCH endpoints
 
 /*
 Endpoint:
-    PATCH
+  This endpoint lets you update password when user sends a reset password request
+Body Parameters:
+  email[string](required): email associated with the forgotten password
 */
 
-app.patch('/food', (req, res) => {
-    
+app.patch('/forgotpassword', async (req, res) => {
+  // This endpoint only allows one body parameter
+  if(Object.keys(req.body).length > 1) {
+    clientError(req, "Body parameters requirements not met", 400);
+    res.status(400).json({error: "Body parameters requirements not met"});
+  }
+  // Patch endpoint should have a body
+  else if(Object.keys(req.body).length == 0) {
+    clientError(req, "Body parameters requirements not met", 400);
+    res.status(400).json({error: "Body parameters requirements not met"});
+  }
+  else {
+    let emailChange = await db.oneOrNone('SELECT username FROM login WHERE email = $1', req.body.email);
+    if(emailChange == null || emailChange == 0) {
+      clientError(req, "Account does not exist", 400);
+      res.json("Account does not exist");
+      // return res.redirect("http://localhost:3000/forgotpassword");
+    }
+    else {
+      await db.oneOrNone("UPDATE login SET password = 'Password has been changed per user request' WHERE email = $1", req.body.email)
+      res.json("Password Updated");
+      // return res.redirect("http://localhost:3000/homepage");
+    }
+  }
+     
 });
 
 /*
 Endpoint:
-    This endpoint lets you update password when user sends a reset password request
+  This endpoint lets you update an order with a different food item from the menu
+Query Parameters:
+  id[integer](required): the order ID to look up the order to update the food item on
+Body Parameters:
+  foodname[string](required): different food item from the menu
 */
 
-// app.patch('/forgotpassword', async (req, res) => {
-//     if(Object.keys(req.body).length != 0) {
-//       clientError(req, "Request body is not permitted at this endpoint", 400);
-//       res.status(400).json({error: "Request body is not permitted at this endpoint"});
-//     } 
-//     // Makes sure that client only 4 query param (name, type, region, abilities)
-//     else if(Object.keys(req.query).length > 1) {
-//         clientError(req, "Query parameters do not meet the requirements", 400);
-//         res.status(400).json({error: "Query parameters do not meet the requirements length"});
-//     }
-//     else {
-//       let emailChange = await db.oneOrNone('SELECT email FROM logins WHERE email = $1', req.query.email);
-//       if(emailChange == null || emailChange == 0) {
-//         clientError(req, "Account does not exist", 400);
-//         res.json("Account does not exist");
-//         // return res.redirect("http://localhost:3000/forgotpassword");
-//       }
-//       else {
-//         await db.oneOrNone("UPDATE logins SET password = 'Password has been changed per user request' WHERE email = $1", req.query.email)
-//         res.json("Password Updated");
-//         // return res.redirect("http://localhost:3000/homepage");
-//       }
-//     }
-    
-// });
+app.patch('/order', async (req, res) => {
+  // This endpoint only allows one body parameter
+  if(Object.keys(req.body).length > 1) {
+    clientError(req, "Body parameters requirements not met", 400);
+    res.status(400).json({error: "Body parameters requirements not met"});
+  }
+  else if(Object.keys(req.body).length == 0) {
+    clientError(req, "Body parameters requirements not met", 400);
+    res.status(400).json({error: "Body parameters requirements not met"});
+  }
+  else if(Object.keys(req.query).length > 1) {
+    clientError(req, "Query parameters do not meet the requirements", 400);
+    res.status(400).json({error: "Query parameters do not meet the requirements length"});
+  } 
+  // Makes sure that client put in an ID that is a number
+  else if(isNaN(req.query.id) && req.query.id != undefined) {
+    clientError(req, "ID is not a number", 400);
+    res.status(400).json({error: "ID is not a number"});
+  }
+  else if(req.body.id != undefined) {
+    clientError(req, "Body parameters requirements not met", 400);
+    res.status(400).json({error: "Body parameters requirements not met"});
+  }
+  else if(req.body.foodname === undefined) {
+    clientError(req, "Body parameters requirements not met", 400);
+    res.status(400).json({error: "Body parameters requirements not met name"});
+  }
+  else {
+    let checkNullOrder = await db.oneOrNone('SELECT order_number FROM testcustomerorder WHERE order_number = $1', req.query.id);
+    if(checkNullOrder == null || checkNullOrder == 0) {
+      clientError(req, "We do not have that order", 400);
+      res.json("We do not have that order");
+    }
+    else {
+      await db.oneOrNone("UPDATE testcustomerorder SET food_name = $1 WHERE order_number = $2", [req.body.foodname, req.query.id])
+      res.json("Order updated!");
+    }
+  }
+})
 
 /* 
 -------------------------------------------------------------------------------------------------------------------
@@ -327,29 +413,81 @@ DELETE endpoints
 
 /*
 Endpoint:
-    DELETE
+  Deletes an order
+Params Parameter:
+  id[integer](required): the order ID 
+
 */
 
-app.delete('/order', async (req, res) => {
+app.delete('/order/:id', async (req, res) => {
+  // Delete endpoints should not have any body input
   if(Object.keys(req.body).length != 0) {
       clientError(req, "Request body is not permitted at this endpoint", 400);
       res.status(400).json({error: "Request body is not permitted at this endpoint"})
-  }    
-  // checking id is a number only
-  else if(isNaN(req.query.id)){
-    clientError(req, "Not a valid ID", 400);
-    res.status(400).json({error: "Not a valid ID"});
   } 
+  // Checks if the id being passed is a number value
+  else if(isNaN(req.params.id)){
+    clientError(req, "Not a valid order ID", 400);
+    res.status(400).json({error: "Not a valid order ID"});
+  } 
+  // Makes sure that only one id is passed at a time
+  else if(Object.keys(req.params).length > 1) {
+    clientError(req, "Query parameters do not meet the requirements", 400);
+    res.status(400).json({error: "Query parameters do not meet the requirements length"});
+  }
   else { 
-    let orderData = await db.oneOrNone('SELECT * FROM customer WHERE id = $1', [req.query.id]);
-    if(orderData = null || orderData == 0) {
-        clientError(req, "That ID does not exist", 400);
-        res.status(400).json({error: "That ID does not exist"})
+    let orderData = await db.oneOrNone('SELECT * FROM testcustomerorder WHERE order_number = $1', [req.params.id]);
+    // Order ID does not exist in database
+    if(orderData == null) {
+        clientError(req, "That order ID does not exist", 400);
+        res.status(400).json({error: "That order ID does not exist"})
     } 
     else {
-        temp = orderData[0];
-        await db.any('DELETE FROM customer_order WHERE id = $1', [req.query.id]);
-        res.json(temp);
+        // store order information temporarily to send back as a "receipt" to user of what was deleted
+        temp = orderData;
+        await db.any('DELETE FROM testcustomerorder WHERE order_number = $1', [req.params.id]);
+        res.json({"Deleted order:": temp});
+            
+    }
+  }
+});
+
+/*
+Endpoint:
+  Deletes an account
+Params Parameter:
+  id[integer](required): the account ID 
+
+*/
+
+app.delete('/logins/:id', async (req, res) => {
+  // Delete endpoints should not have any body input
+  if(Object.keys(req.body).length != 0) {
+      clientError(req, "Request body is not permitted at this endpoint", 400);
+      res.status(400).json({error: "Request body is not permitted at this endpoint"})
+  } 
+  // Checks if the id being passed is a number value
+  else if(isNaN(req.params.id)){
+    clientError(req, "Not a valid order ID", 400);
+    res.status(400).json({error: "Not a valid account ID"});
+  } 
+  // Makes sure that only one id is passed at a time
+  else if(Object.keys(req.params).length > 1) {
+    clientError(req, "Query parameters do not meet the requirements", 400);
+    res.status(400).json({error: "Query parameters do not meet the requirements length"});
+  }
+  else { 
+    let loginData = await db.oneOrNone('SELECT * FROM login WHERE id = $1', [req.params.id]);
+    // Account ID does not exist in database
+    if(loginData == null) {
+        clientError(req, "That order ID does not exist", 400);
+        res.status(400).json({error: "That account ID does not exist"})
+    } 
+    else {
+        // store account information temporarily to send back as a "receipt" to user of what was deleted
+        temp = loginData;
+        await db.any('DELETE FROM login WHERE id = $1', [req.params.id]);
+        res.json({"Deleted account:": temp});
             
     }
   }
