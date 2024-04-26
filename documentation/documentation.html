@@ -1,3 +1,5 @@
+Html 
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -99,10 +101,46 @@
         <h3><p> Endpoints</p></h3>
         <hr>
 
-     <div class="getrequest">
-
-    
       <button type="button" class="btn btn-outline-info">GET</button>   
+      
+          <h4>  /login </h4>
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  GET '/login'
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"> User can get a list of the menu items or use the specific query parameters to get certain food items
+                </button></div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Parameters
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"> <ul> 
+                  <li>  User can get information based on a single username</li>
+                  </div>
+                </ul>
+                </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  Request Body
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Body Not Required </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-outline-info">GET</button>   
       
           <h4>  /menu </h4>
           <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -143,6 +181,7 @@
               </div>
             </div>
           </div>
+          
           
 
     </div>
@@ -201,9 +240,16 @@
                 </button>
               </h2>
               <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body"></div>
-                </ul>
-                </div>
+                <div class="accordion-body"> Body parameters: <ul></ul>
+                  <li>username(required): type username of choice as a string value on the html form</li>
+                  <li>password(required): type password of choice as a string value on the html form</li>
+                  <li>email(required): type email of choice as a string value on the html form</li>
+                  <li>street number(required): type street address number of choice as an integer value on the html form</li>
+                  <li>street name(required): type street address name of choice as a string value on the html form</li>
+                  <li>city(required): type city of choice as a string value on the html form</li>
+                  <li>zipcode(required): type zipcode of choice as an integer value on the html form</li>
+                  <li>phone number(required): type phone number of choice as an integer value on the html form</li> </div>
+              </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header">
@@ -225,6 +271,51 @@
             </div>
           </div>
     </div>
+
+
+    <button type="button" class="btn btn-outline-warning">POST </button>
+    <h4>  /order </h4>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              POST'/order'
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body"> Adds the new order to the customer_order database
+
+
+            </button></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Parameters
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body"> Body parameters: <ul><li>username[string](required): type username of the customer ordering</li>
+              <li>menu item[dropdown menu](required): select one food item from the drop down menu</li></div>
+            </ul>
+            </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Request Body
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body"> Body parameters: <ul></ul>
+              
+              <ul><li>username[string](required): type username of the customer ordering</li>
+              <li>menu item[dropdown menu](required): select one food item from the drop down menu</li></div>
+            </ul>
+          </div>
+        </div>
+      </div>
+</div>
     <br>
     <hr>
 
@@ -262,15 +353,15 @@
 
         <div class="patchrequest">
           <button type="button" class="btn btn-outline-info">PATCH</button>
-          <h4>  // </h4>
+          <h4>  /forgotpassword </h4>
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  PATCH/.../:id
+                  PATCH'/forgotpassword'
               </h2>
               <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body"> Updates an existing ...
+                <div class="accordion-body"> This endpoint lets you update password when user sends a reset password request
 
                 </button></div>
               </div>
@@ -282,7 +373,8 @@
                 </button>
               </h2>
               <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body"> id[number](required): the id of the task to be updated to othe todolist</div>
+                <div class="accordion-body">  Body Parameters:
+                  <ul></ul><li>email[string](required): email associated with the forgotten password</li></div></ul>
               </div>
             </div>
             <div class="accordion-item">
@@ -292,14 +384,56 @@
                 </button>
               </h2>
               <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">todo[string]:the task to be updated
-                  completed[boolean]: the status of the task</div>
+                <div class="accordion-body"> Body Parameters:
+                  <ul><li>email[string](required): email associated with the forgotten password</li></div></ul>
               </div>
             </div>
           </div>
     </div>
+
+    <button type="button" class="btn btn-outline-info">PATCH</button>
+    <h4>  /order </h4>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            PATCH'/order'
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">  This endpoint lets you update an order with a different food item from the menu
+
+          </button></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Parameters
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body"> Query Parameters:
+            <ul><li>id[integer](required): the order ID to look up the order to update the food item on</li> </div>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Request Body
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">Body Parameters:
+            <ul><li>foodname[string](required): different food item from the menu</li></div></ul>
+        </div>
+      </div>
+    </div>
+</div>
+
+
     <br>
-    <!-- PUT Response Section -->
+    <!-- PATCH Response Section -->
 
         <div class="putresponse">
           <button type="button" class="btn btn-outline-info">RESPONSES</button>
@@ -331,15 +465,15 @@
 
         <div class="deleterequest">
           <button type="button" class="btn btn-outline-danger">DELETE</button>
-          <h4>  /menu/:id </h4>
+          <h4>  /order/:id </h4>
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  DELETE /menu/:id 
+                  DELETE /order/:id 
               </h2>
               <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body"> Deletes an existing to do 
+                <div class="accordion-body">   Deletes an order
 
                 </button></div>
               </div>
@@ -351,7 +485,9 @@
                 </button>
               </h2>
               <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">id[number](required): the id of the task to be updated to othe todolist</div>
+                <div class="accordion-body">Params Parameter:
+                  <ul><li>[integer](required): the order ID </li></div>
+                </ul>
               </div>
             </div>
             <div class="accordion-item">
@@ -366,6 +502,47 @@
             </div>
           </div>
     </div>
+
+    <button type="button" class="btn btn-outline-danger">DELETE</button>
+    <h4>  /logins/:id </h4>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            DELETE /logins/:id 
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">   Deletes an account
+
+          </button></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Parameters
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">Params Parameter:
+            <ul>
+              <li>id[integer](required): the account ID </li></div>
+            </ul>    
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Request Body
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">Body Not Permitted</div>
+        </div>
+      </div>
+    </div>
+</div>
+
     <br>
 
     <!-- DELETE Response Section -->
@@ -409,5 +586,5 @@
 
 </div> 
 </div>
-<!-- <script src="server2.js"></script> -->
+
 
