@@ -7,7 +7,7 @@ html {
     display: grid  !important;
     background-color: white  !important;
     text-align: center;
-    color:blue;
+    color:#004AAD ;
   }
 
 
@@ -19,6 +19,9 @@ html {
 
   }
   
+  .navbar-brand{
+    color: #004AAD ;
+  }
 
   nav.navbar.bg-primary{
     background-color:rgba(70, 167, 231, 0.614) !important;
@@ -43,14 +46,14 @@ html {
   .getrequest{
     background-color: white !important;
     text-align: left;
-    color: blue;
+    color: #004AAD 
 
 
   }
   .getresponse{
     background-color: white !important;
     text-align: left;
-    color: blue;
+    color: #004AAD 
   }
 
   
@@ -59,26 +62,26 @@ html {
   .postrequest{
     background-color: white!important;
     text-align: left;
-    color: blue;
+    color: #004AAD 
 
   }
   .postresponse{
     background-color: white !important;
     text-align: left;
-    color: blue;
+    color: #004AAD 
 
   }
 
   .putrequest{
     background-color: white!important;
     text-align: left;
-    color: blue
+    color: #004AAD 
 
   }
   .putresponse{
     background-color: white !important;
     text-align: left;
-    color: blue;
+    color: #004AAD 
 
   }
 
@@ -87,13 +90,14 @@ html {
   .deleterequest{
     background-color: white!important;
     text-align: left;
-    color: blue;
+    color: #004AAD 
 
   }
   .deleteresponse{
     background-color: white!important;
     text-align: left;
-    color: blue;
+    color: #004AAD 
+
 
   }
 
